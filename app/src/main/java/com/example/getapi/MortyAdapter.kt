@@ -1,11 +1,11 @@
 package com.example.getapi
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -15,7 +15,7 @@ class MortyAdapter(val dataMorty: List<ResultsItem?>?) : RecyclerView.Adapter<Mo
         val nameMorty = view.findViewById<TextView>(R.id.item_name_morty)
         val statusMorty = view.findViewById<TextView>(R.id.item_status_morty)
         val speciesMorty = view.findViewById<TextView>(R.id.item_species_morty)
-        val createdMorty = view.findViewById<TextView>(R.id.item_created_morty)
+//        val createdMorty = view.findViewById<TextView>(R.id.item_created_morty)
         val genderMorty = view.findViewById<TextView>(R.id.item_gender_morty)
     }
 
@@ -32,21 +32,33 @@ class MortyAdapter(val dataMorty: List<ResultsItem?>?) : RecyclerView.Adapter<Mo
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.nameMorty.text = dataMorty?.get(position)?.name
-        holder.statusMorty.text = dataMorty?.get(position)?.status
-        holder.speciesMorty.text = dataMorty?.get(position)?.species
-        holder.createdMorty.text = dataMorty?.get(position)?.created
-        holder.genderMorty.text = dataMorty?.get(position)?.gender
+        val morty = dataMorty?.get(position)
+        val photo = morty?.image
+
+        holder.nameMorty.text = morty?.name
+        holder.statusMorty.text = morty?.status
+        holder.speciesMorty.text = morty?.species
+//        holder.createdMorty.text = morty?.created
+        holder.genderMorty.text = morty?.gender
 
         Glide.with(holder.imgMorty)
-            .load(dataMorty?.get(position)?.image)
+            .load(photo)
             .error(R.drawable.ic_launcher_background)
             .into(holder.imgMorty)
 
-//        holder.itemView.setOnClickListener {
-//            val name = dataMorty?.get(position)?.name
-//            Toast.m
-//        }
+
+        val context =holder.itemView.context
+
+        holder.itemView.setOnClickListener {
+            val move = Intent(context, DetailMorty::class.java)
+            move.putExtra(DetailMorty.EXTRA_NAME, morty?.name)
+            move.putExtra(DetailMorty.EXTRA_PHOTO, morty?.image)
+            move.putExtra(DetailMorty.EXTRA_STATUS, morty?.status)
+            move.putExtra(DetailMorty.EXTRA_SPECIES, morty?.species)
+            move.putExtra(DetailMorty.EXTRA_CREATED, morty?.created)
+            move.putExtra(DetailMorty.EXTRA_GENDER, morty?.gender)
+            context.startActivity(move)
+        }
     }
 
 }

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@drawable/border">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_img"
@@ -27,67 +28,45 @@
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/cv_img"
         android:text="Name"
+        android:textColor="#001858"
         android:textSize="25sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/spesies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_created_morty"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/cv_img"
-        android:text="Species :"
-        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/item_species_morty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_created_morty"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/spesies"
-        android:text="Human"
-        android:textSize="18sp" />
-    <TextView
-        android:id="@+id/gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_species_morty"
+        android:layout_below="@id/item_gender_morty"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/cv_img"
-        android:text="Gender :"
+        android:text="Species"
         android:textSize="18sp" />
+
 
     <TextView
         android:id="@+id/item_gender_morty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item_species_morty"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/spesies"
-        android:text="Male"
+        android:layout_below="@id/item_name_morty"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/cv_img"
+        android:text="Gender"
         android:textSize="18sp" />
+
+
 
     <TextView
         android:id="@+id/item_status_morty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gender"
+        android:layout_below="@id/item_species_morty"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/cv_img"
         android:text="Alive"
+        android:textColor="#001858"
+        android:background="@drawable/roundedbg"
+        android:paddingHorizontal="5dp"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/item_created_morty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_name_morty"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/cv_img"
-        android:text="Created"
-        android:textSize="18sp"
-        android:textStyle="italic"/>
 
 </RelativeLayout>
