@@ -49,6 +49,7 @@ dependencies {
     val versionRetrofit = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$versionRetrofit")
     implementation("com.squareup.retrofit2:converter-gson:$versionRetrofit")
+    implementation("androidx.appcompat:appcompat")
 
 // Load image
     implementation("com.github.bumptech.glide:glide:4.12.0")

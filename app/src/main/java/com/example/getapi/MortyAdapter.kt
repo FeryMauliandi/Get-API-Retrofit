@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class MortyAdapter(val dataMorty: List<ResultsItem?>?) : RecyclerView.Adapter<MortyAdapter.MyViewHolder>() {
+class MortyAdapter(private var dataMorty: List<ResultsItem?>?) : RecyclerView.Adapter<MortyAdapter.MyViewHolder>() {
     class MyViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         val imgMorty = view.findViewById<ImageView>(R.id.item_image_Morty)
         val nameMorty = view.findViewById<TextView>(R.id.item_name_morty)
@@ -19,6 +19,11 @@ class MortyAdapter(val dataMorty: List<ResultsItem?>?) : RecyclerView.Adapter<Mo
         val genderMorty = view.findViewById<TextView>(R.id.item_gender_morty)
     }
 
+    fun setFilteredList(dataMorty: List<ResultsItem?>?){
+        this.dataMorty = dataMorty
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_row_morty, parent, false)
         return MyViewHolder(view)
@@ -26,7 +31,7 @@ class MortyAdapter(val dataMorty: List<ResultsItem?>?) : RecyclerView.Adapter<Mo
 
     override fun getItemCount(): Int {
         if(dataMorty != null) {
-            return dataMorty.size
+            return dataMorty!!.size
         }
         return 0
     }
@@ -38,7 +43,6 @@ class MortyAdapter(val dataMorty: List<ResultsItem?>?) : RecyclerView.Adapter<Mo
         holder.nameMorty.text = morty?.name
         holder.statusMorty.text = morty?.status
         holder.speciesMorty.text = morty?.species
-//        holder.createdMorty.text = morty?.created
         holder.genderMorty.text = morty?.gender
 
         Glide.with(holder.imgMorty)
